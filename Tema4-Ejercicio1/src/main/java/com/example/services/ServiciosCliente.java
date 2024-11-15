@@ -21,15 +21,30 @@ public class ServiciosCliente {
 
 		return clientes;
 	}
-		
+	
+	public Cliente mostrarCliente (int id) {
+			return cliente.mostrarCliente(id);
+	}
 
 	@Transactional
 	 public Cliente insertarCliente(Cliente clientes) {
 		return cliente.insertarCliente(clientes);
 	}
 	
-	public Cliente mostrarCliente (Cliente id) {
-		return cliente.mostrarCliente(id);
-	}
+	public void eliminarCliente(int id) {
+        cliente.eliminarCliente(id);
+    }
+
+   /* public Cliente actualizarCliente(int id, Cliente cliente) {
+        return cliente. actualizarCliente(id, cliente);
+    }
+
+    public Cliente actualizarClienteParcial(int id, Cliente cliente) {
+        return cliente.actualizarClienteParcial(id, cliente);
+    }
+*/
+    public List<Cliente> obtenerClientesPorNombre(String nombre) {
+        return cliente.getClientesPorNombre(nombre);
+    }
 	
 }

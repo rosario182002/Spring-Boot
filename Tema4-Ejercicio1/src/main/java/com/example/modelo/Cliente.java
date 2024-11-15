@@ -13,23 +13,26 @@ public class Cliente {
 	@Id
 	@GeneratedValue(strategy = GenerationType.IDENTITY)
 	@Column
-	private String id;
+	private int id;
 	@Column
 	private String nombre;
 	@Column
 	private String apellidos;
 	
+	public Cliente(){
+		
+	}
 	
-	public Cliente(String id, String nombre, String apellidos) {
+	public Cliente(int id, String nombre, String apellidos) {
 		super();
 		this.id = id;
 		this.nombre = nombre;
 		this.apellidos = apellidos;
 	}
-	public String getId() {
+	public int getId() {
 		return id;
 	}
-	public void setId(String id) {
+	public void setId(int id) {
 		this.id = id;
 	}
 	public String getNombre() {
