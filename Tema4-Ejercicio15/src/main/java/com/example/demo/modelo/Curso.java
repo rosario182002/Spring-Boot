@@ -1,9 +1,7 @@
 package com.example.demo.modelo;
 
-<<<<<<< HEAD
-=======
-import java.util.ArrayList;
->>>>>>> 4451a31c42c8c2dbbeaf9d071869701a47731704
+
+
 import java.util.List;
 
 import jakarta.persistence.CascadeType;
@@ -38,13 +36,11 @@ public class Curso {
 	inverseJoinColumns = {@JoinColumn(name = "id_estudiante") })
 	private List<Estudiante> estudiante;
 	
-<<<<<<< HEAD
+
 	public Curso() {
 		
 	}
-=======
-	
->>>>>>> 4451a31c42c8c2dbbeaf9d071869701a47731704
+
 
 	public Curso(Integer id, String nombre, String descripcion, List<Estudiante> estudiante) {
 		super();

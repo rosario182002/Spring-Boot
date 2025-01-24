@@ -1,6 +1,5 @@
 package com.example.demo;
 
-<<<<<<< HEAD
 
 import java.util.ArrayList;
 import java.util.List;
@@ -16,18 +15,16 @@ import com.example.demo.servicio.InterfazServiCurso;
 import com.example.demo.servicio.InterfazServiEstudiante;
 
 
-=======
 import org.springframework.boot.SpringApplication;
 import org.springframework.boot.autoconfigure.SpringBootApplication;
 
->>>>>>> 4451a31c42c8c2dbbeaf9d071869701a47731704
 @SpringBootApplication
 public class Tema4Ejercicio15Application {
 
 	public static void main(String[] args) {
 		SpringApplication.run(Tema4Ejercicio15Application.class, args);
 	}
-<<<<<<< HEAD
+
 	@Autowired 
 	InterfazServiEstudiante servicioEstudiante;
 	@Autowired
@@ -108,16 +105,9 @@ public class Tema4Ejercicio15Application {
 		for(Estudiante estu : estu4 ) {
 			System.out.println("Nombre: " + estu);
 		}*/
-		
-		
-		
-		
-		
-		
 	}
- }
 
-=======
+
 
 }
->>>>>>> 4451a31c42c8c2dbbeaf9d071869701a47731704
+

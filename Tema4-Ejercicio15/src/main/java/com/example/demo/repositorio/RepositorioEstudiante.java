@@ -22,15 +22,13 @@ public class RepositorioEstudiante implements InterfazRepoEstudiante {
 		return entityManager.createQuery("Select e from Estudiante e", Estudiante.class).getResultList();
 	}
 
-<<<<<<< HEAD
 	@Override
-=======
->>>>>>> 4451a31c42c8c2dbbeaf9d071869701a47731704
+
 	//2. Obtener Estudiantes por id
 	public Estudiante buscarEstudiantePorId(Integer id) {
 		return entityManager.find(Estudiante.class, id);
 	}
-<<<<<<< HEAD
+
 
 	@Override 
 	public void crearActualizarEstudiante(Estudiante estudiante) {
@@ -48,6 +46,4 @@ public class RepositorioEstudiante implements InterfazRepoEstudiante {
 	}
 	
 
-=======
->>>>>>> 4451a31c42c8c2dbbeaf9d071869701a47731704
 }

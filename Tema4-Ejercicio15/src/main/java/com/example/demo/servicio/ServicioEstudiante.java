@@ -21,7 +21,7 @@ public class ServicioEstudiante implements InterfazServiEstudiante {
 	public List<Estudiante> obtenerEstudiantes(){
 		return repositorio.obtenerEstudiantes();
 	}
-<<<<<<< HEAD
+
 	@Override
 	public Estudiante obtenerEstudiantePorId(Integer id) {
 		return repositorio.buscarEstudiantePorId(id);
@@ -44,7 +44,6 @@ public class ServicioEstudiante implements InterfazServiEstudiante {
 	public List<Estudiante> obtenerEstudiantePorNombreConCadenaEspe (String nombre){
 		return repositorio.obtenerEstudiante(nombre);
 	}
-	//para git
-=======
->>>>>>> 4451a31c42c8c2dbbeaf9d071869701a47731704
+
+
 }

@@ -57,9 +57,9 @@ public class ServicioCurso implements InterfazServiCurso {
 	public void borrarEstudianteDeUnCurso(Estudiante estudiante, Integer id) {
 		Curso curso = repositorio.buscarCursoPorId(id); //buscamos el id delcurso
 		List<Estudiante> estudiantes = curso.getEstudiante(); //guardamos lalista de estudiantes
-		if(curso != null) { //Comprobamos que existe el autor
+		if(curso != null) { //Comprobamos que existe el curso
 			for(Estudiante estudiantes1 : estudiantes ) { //Recorremos la lista de los estudiantes
-				if(estudiantes1 == estudiante) { //Comprobamos que es el estudiante que hemos pasado
+				if(estudiantes1.equals(estudiante)) { //Comprobamos que es el estudiante que hemos pasado
 					estudiantes.remove(estudiantes1); //borramos el estudiante
 					repositorio.crearCurso(curso); //Actualixamos el curso
 				}

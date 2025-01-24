@@ -1,6 +1,5 @@
 package com.example.demo.modelo;
 
-import java.util.ArrayList;
 import java.util.List;
 
 import jakarta.persistence.Column;
@@ -8,13 +7,12 @@ import jakarta.persistence.Entity;
 import jakarta.persistence.GeneratedValue;
 import jakarta.persistence.GenerationType;
 import jakarta.persistence.Id;
-
 import jakarta.persistence.ManyToMany;
 import jakarta.persistence.Table;
 
 @Entity
-@Table(name = "estudiante")
-public class Estudiante {
+@Table (name= "proyectos")
+public class Proyectos {
 
 	@Id
 	@GeneratedValue(strategy = GenerationType.IDENTITY)
@@ -24,24 +22,21 @@ public class Estudiante {
 	@Column
 	private String nombre;
 	
-	@Column 
-	private String email;
+	@ManyToMany(mappedBy = "id_proyectos")
+	private List<Proyectos> proyectos;
 	
-	@ManyToMany(mappedBy = "estudiante")	
-	private List<Curso> curso;
-
-	
-	public Estudiante() {
+	public Proyectos() {
 		
 	}
 	
-	public Estudiante(Integer id, String nombre, String email, List<Curso> curso) {
+	public Proyectos(Integer id, String nombre, List<Proyectos> proyectos) {
 		super();
 		this.id = id;
 		this.nombre = nombre;
-		this.email = email;
-		this.curso = new ArrayList<>();
+		this.proyectos = proyectos;
 	}
+
+
 
 	public Integer getId() {
 		return id;
@@ -59,22 +54,14 @@ public class Estudiante {
 		this.nombre = nombre;
 	}
 
-	public String getEmail() {
-		return email;
+	public List<Proyectos> getPersonas() {
+		return proyectos;
 	}
 
-	public void setEmail(String email) {
-		this.email = email;
+	public void setPersonas(List<Proyectos> proyectos) {
+		this.proyectos = proyectos;
 	}
-
-	public List<Curso> getCurso() {
-		return curso;
-	}
-
-	public void setCurso(List<Curso> curso) {
-		this.curso = curso;
-	}
-
 	
 	
+
 }
