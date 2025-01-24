@@ -43,8 +43,8 @@ public class ControladorCliente {
     	servicio.eliminarCliente(id);
         return ResponseEntity.noContent().build();
     }
-/*
-    // Actualizar un cliente por ID
+    
+    //Actualizar un cliente por ID
     @PutMapping("/{id}")
     public ResponseEntity<Cliente> actualizarCliente(@PathVariable int id, @RequestBody Cliente cliente) {
         Cliente clienteActualizado = servicio.actualizarCliente(id, cliente);
@@ -57,7 +57,7 @@ public class ControladorCliente {
         Cliente clienteActualizado = servicio.actualizarClienteParcial(id, cliente);
         return clienteActualizado != null ? ResponseEntity.ok(clienteActualizado): ResponseEntity.notFound().build();
     }
-*/
+
     // Obtener clientes por nombre
     @GetMapping("/nombre/{nombre}")
     public ResponseEntity<List<Cliente>> getClientesNombre(@PathVariable String nombre) {

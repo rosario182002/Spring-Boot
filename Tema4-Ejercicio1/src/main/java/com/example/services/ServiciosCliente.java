@@ -35,14 +35,14 @@ public class ServiciosCliente {
         cliente.eliminarCliente(id);
     }
 
-   /* public Cliente actualizarCliente(int id, Cliente cliente) {
-        return cliente. actualizarCliente(id, cliente);
+    public Cliente actualizarCliente(int id, Cliente cliente1) {
+        return cliente. actualizarCliente(id, cliente1);
     }
 
-    public Cliente actualizarClienteParcial(int id, Cliente cliente) {
-        return cliente.actualizarClienteParcial(id, cliente);
+    public Cliente actualizarClienteParcial(int id, Cliente cliente1) {
+        return cliente.actualizarClienteParcial(id, cliente1);
     }
-*/
+
     public List<Cliente> obtenerClientesPorNombre(String nombre) {
         return cliente.getClientesPorNombre(nombre);
     }
