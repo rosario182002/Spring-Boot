@@ -29,6 +29,7 @@ public class Estudiante {
 	
 	@ManyToMany(mappedBy = "estudiante")	
 	private List<Curso> curso;
+<<<<<<< HEAD
 	
 	public Estudiante() {
 		
@@ -36,6 +37,13 @@ public class Estudiante {
 	
 	public Estudiante(String nombre, String email, List<Curso> curso) {
 		super();
+=======
+
+	
+	public Estudiante(Integer id, String nombre, String email, List<Curso> curso) {
+		super();
+		this.id = id;
+>>>>>>> 4451a31c42c8c2dbbeaf9d071869701a47731704
 		this.nombre = nombre;
 		this.email = email;
 		this.curso = new ArrayList<>();
