@@ -1,7 +1,9 @@
 package com.example.demo.modelo;
 
+import java.util.ArrayList;
 import java.util.List;
 
+import jakarta.persistence.CascadeType;
 import jakarta.persistence.Column;
 import jakarta.persistence.Entity;
 import jakarta.persistence.GeneratedValue;
@@ -22,20 +24,19 @@ public class Persona {
 	@Id
 	@GeneratedValue(strategy = GenerationType.IDENTITY)
 	@Column
-	private Integer id;
+	private Integer id_persona;
 	
 	@Column 
 	private String nombre;
 	
-	@OneToOne
-	@JoinColumn(name = "id_pasaporte")
+	@OneToOne(mappedBy = "persona", cascade = CascadeType.ALL)
 	private Pasaporte pasaporte;
 	
 	@ManyToMany
 	@JoinTable(name = "persona_proyecto", 
 		joinColumns = {@JoinColumn(name="id_persona")},
 		inverseJoinColumns = {@JoinColumn(name ="id_proyecto")})
-	private List<Pasaporte> pasaportes;
+	private List<Proyectos> proyectos = new ArrayList<>();
 	
 	
 	
@@ -43,25 +44,25 @@ public class Persona {
 		
 	}
 
-	public Persona(Integer id, String nombre, Pasaporte pasaporte, List<Pasaporte> pasaportes) {
+	public Persona(Integer id_persona, String nombre, Pasaporte pasaporte, List<Proyectos> proyectos) {
 		super();
-		this.id = id;
+		this.id_persona = id_persona;
 		this.nombre = nombre;
 		this.pasaporte = pasaporte;
-		this.pasaportes = pasaportes;
+		this.proyectos = proyectos;
 	}
 
 
 
 
 	public Integer getId() {
-		return id;
+		return id_persona;
 	}
 
 
 
-	public void setId(Integer id) {
-		this.id = id;
+	public void setId(Integer id_persona) {
+		this.id_persona = id_persona;
 	}
 
 
@@ -90,14 +91,14 @@ public class Persona {
 
 
 
-	public List<Pasaporte> getPasaportes() {
-		return pasaportes;
+	public List<Proyectos> getProyectos() {
+		return proyectos;
 	}
 
 
 
-	public void setPasaportes(List<Pasaporte> pasaportes) {
-		this.pasaportes = pasaportes;
+	public void setProyectos(List<Proyectos> proyectos) {
+		this.proyectos = proyectos;
 	}
 	
 	

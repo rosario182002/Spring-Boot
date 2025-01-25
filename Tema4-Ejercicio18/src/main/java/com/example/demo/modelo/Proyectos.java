@@ -22,21 +22,19 @@ public class Proyectos {
 	@Column
 	private String nombre;
 	
-	@ManyToMany(mappedBy = "id_proyectos")
-	private List<Proyectos> proyectos;
+	@ManyToMany(mappedBy = "proyectos") //esto es el atributo que esta en la clase Persona en la lista
+	private List<Persona> persona;
 	
 	public Proyectos() {
 		
 	}
 	
-	public Proyectos(Integer id, String nombre, List<Proyectos> proyectos) {
+	public Proyectos(Integer id, String nombre, List<Persona> persona) {
 		super();
 		this.id = id;
 		this.nombre = nombre;
-		this.proyectos = proyectos;
+		this.persona = persona;
 	}
-
-
 
 	public Integer getId() {
 		return id;
@@ -54,12 +52,12 @@ public class Proyectos {
 		this.nombre = nombre;
 	}
 
-	public List<Proyectos> getPersonas() {
-		return proyectos;
+	public List<Persona> getPersonas() {
+		return persona;
 	}
 
-	public void setPersonas(List<Proyectos> proyectos) {
-		this.proyectos = proyectos;
+	public void setPersonas(List<Persona> persona) {
+		this.persona = persona;
 	}
 	
 	

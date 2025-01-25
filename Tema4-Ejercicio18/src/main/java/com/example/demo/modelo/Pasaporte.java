@@ -5,6 +5,7 @@ import jakarta.persistence.Entity;
 import jakarta.persistence.GeneratedValue;
 import jakarta.persistence.GenerationType;
 import jakarta.persistence.Id;
+import jakarta.persistence.JoinColumn;
 import jakarta.persistence.OneToOne;
 import jakarta.persistence.Table;
 
@@ -17,20 +18,21 @@ public class Pasaporte {
 	private Integer id;
 	
 	@Column
-	private Integer numero;
+	private String numero;
 	
-	@OneToOne(mappedBy = "id_persona")
-	private Persona personas;
+	@OneToOne
+	@JoinColumn(name = "id_persona")
+	private Persona persona;
 	
 	public Pasaporte() {
 		
 	}
 
-	public Pasaporte(Integer id, Integer numero, Persona personas) {
+	public Pasaporte(Integer id, String numero, Persona persona) {
 		super();
 		this.id = id;
 		this.numero = numero;
-		this.personas = personas;
+		this.persona = persona;
 	}
 
 	public Integer getId() {
@@ -41,21 +43,22 @@ public class Pasaporte {
 		this.id = id;
 	}
 
-	public Integer getNumero() {
+	public String getNumero() {
 		return numero;
 	}
 
-	public void setNumero(Integer numero) {
+	public void setNumero(String numero) {
 		this.numero = numero;
 	}
 
 	public Persona getPersonas() {
-		return personas;
+		return persona;
 	}
 
-	public void setPersonas(Persona personas) {
-		this.personas = personas;
+	public void setPersonas(Persona persona) {
+		this.persona = persona;
 	}
+
 
 	
 	

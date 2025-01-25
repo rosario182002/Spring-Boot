@@ -33,7 +33,7 @@ public class ServicioAutor implements InterfazServicioAutor {
 	}
 	@Override
 	public void borrarAutor(Integer id) {
-	     Autor autor = repositorio.buscarAutorID(id); //Guarda el autor en una variable, lo traes a local para ver si existe
+	     Autor autor = repositorio.buscarAutorID(id); //Guarda el autor  
 	        if (autor != null) {
 	            repositorio.borrarAutor(autor); // comprueba si existe y si existe lo borra
 	        }
