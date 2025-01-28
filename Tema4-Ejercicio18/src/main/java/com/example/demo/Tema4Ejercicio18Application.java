@@ -50,25 +50,17 @@ public class Tema4Ejercicio18Application implements CommandLineRunner {
 		pasaporte1.setNumero("ABC123");
 		servicioPasaporte.crearActualizarPasaporte(pasaporte1);
 		
-		
 		//4. Almacenar en BD un pasaporte2 con número ‘XYZ456 ‘
-
 		
 		Pasaporte pasaporte2 = new Pasaporte();
 		pasaporte2.setNumero("XYZ456");
 		servicioPasaporte.crearActualizarPasaporte(pasaporte2);
-		
-		
 		
 		//5. Almacenar en BD un proyecto1 con nombre con número ‘Proyecto Alpha ‘ 
 		
 		Proyectos proyecto1 = new Proyectos();
 		proyecto1.setNombre("Proyecto Alpha");
 		servicioProyecto.crearActualizarProyecto(proyecto1);
-		
-		persona2.getProyectos().add(proyecto1);
-		
-		servicioPersona.crearActualizarPersona(persona2);
 		
 		//6. Almacenar en BD un proyecto2 con nombre con número ‘Proyecto Beta ‘
 

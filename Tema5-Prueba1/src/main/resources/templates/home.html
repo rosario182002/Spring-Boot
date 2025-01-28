@@ -1,0 +1,21 @@
+<!DOCTYPE html>
+<html xmlns:th="http://www.thymeleaf.org">
+<head>
+<meta charset="UTF-8">
+<title>Página de Inicio</title>
+</head>
+<body>
+	<h1 th:text="${mensaje}">Texto por defecto</h1>
+	<h1 th:text="${mensaje1}"></h1>
+	
+	<!-- Pasar otro atributo llamado nombre2, cuyo valor debe ser una cadena con vuestro nombre
+pero con la etiqueta <b>. Pintar en la vista dos veces dicho atributo, uno escapado y otro sin
+escapar. -->
+	<h1 th:text="${nombre2}"></h1>
+	<h1 th:utext="${nombre2}"></h1>
+	
+	<!--  Añadir una imagen a la carpeta src/main/resources/static/imagenes y verla en la vista
+home.html. -->
+	<img th:src="@{/imagenes/stich.jpg}" alt="imagen">
+</body>
+</html>
