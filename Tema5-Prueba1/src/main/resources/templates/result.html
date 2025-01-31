@@ -1,0 +1,17 @@
+<!DOCTYPE html>
+<html xmlns:th="http://www.thymeleaf.org" >
+<head>
+<meta charset="UTF-8">
+<title>Formulario enviado</title>
+</head>
+<body>
+<h1 th:text=${mensaje}>
+
+<p> Nombre: <span th:text="${User.nombre}"></span></p>
+<p> Edad: <span th:text="${User.edad}"></span></p>
+
+
+</h1>
+
+</body>
+</html>

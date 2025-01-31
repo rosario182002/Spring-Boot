@@ -17,5 +17,30 @@ escapar. -->
 	<!--  Añadir una imagen a la carpeta src/main/resources/static/imagenes y verla en la vista
 home.html. -->
 	<img th:src="@{/imagenes/stich.jpg}" alt="imagen">
+	
+	<!-- A continuación, crear un enlace en la vista. Al pulsarlo, cargar la vista index.html. (Usar la
+ruta /index). Crear la vista index.html con un h1. -->
+	<h1><a th:href="@{/index}">Index</a></h1>
+	
+	<!--  En el método home del controlador HomeController, pasarle otro atributo a la vista: role con
+el valor ‘admin’. En la vista mostrar un párrafo indicando si es o no administrador -->
+	<h2>Eres admin</h2>
+	<p th:if="${role == 'model'}">Eres un administrador.</p>
+    <p th:unless="${role == 'model'}">No eres un administrador.</p>
+    
+    <!-- Crear a continuación en el método home., un array de cadenas que contenga 5 nombres
+propios. Pasar el array a la vista home.html y escribir una lista con los nombres del array. -->
+    <h1>Lista nombres</h1>
+    <ul>
+      <li th:each="nombre : ${nombres}" th:text="${nombre}"></li> <!-- el primer nombre es la persona lo que esta dentro del {es la lista} -->
+      </ul>
+      
+      <!-- Crear un enlace en la vista. Al pulsarlo, cargar la vista form.html. (Usar la ruta /form). Crear
+     la vista form.html con un h1. -->
+	<h1><a th:href="@{/form}">Formulario</a></h1>
+	
+	<!-- FORMULARIO -->
+	
+	
 </body>
 </html>
