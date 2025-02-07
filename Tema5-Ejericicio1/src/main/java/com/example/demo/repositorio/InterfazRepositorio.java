@@ -15,5 +15,6 @@ public interface InterfazRepositorio {
 	public Cliente modificarDireccion(Long clienteId, Direccion nuevaDireccion);
 	public List<Cliente> buscarClientesPorCiudad(String ciudad);
 	public int actualizarCiudadPorNombre(String ciudad, String nombre);
+	Cliente guardarCliente(Cliente cliente);
 	
 }

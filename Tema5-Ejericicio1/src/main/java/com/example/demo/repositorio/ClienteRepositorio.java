@@ -11,37 +11,48 @@ import com.example.demo.modelo.Direccion;
 
 import jakarta.persistence.EntityManager;
 import jakarta.persistence.PersistenceContext;
+import jakarta.persistence.TypedQuery;
+import jakarta.transaction.Transactional;
 
 @Repository
+
 public class ClienteRepositorio implements InterfazRepositorio {
 	@PersistenceContext 
 	private EntityManager entityManager;
 	
+	@Override
 	public Cliente guardarCliente(Cliente cliente) {
-		entityManager.persist(cliente);
+		if(cliente.getId() == null) {
+			entityManager.persist(cliente);
+		}else {
+			entityManager.merge(cliente);
+			
+		}
+		
+		
 		return cliente;
 	}
 	
+	@Override
 	public List<Cliente> obtenerTodosLosClientes(){
 		 return entityManager.createQuery("SELECT c FROM Cliente c", Cliente.class).getResultList();
 	}
-	
-	public Optional<Cliente> buscarClientePorId(Long id){
-		Cliente cliente = entityManager.find(Cliente.class, id);
-		return Optional.ofNullable(cliente);
+	@Override
+	public Optional<Cliente> buscarClientePorId(Long id) {
+	    return Optional.ofNullable(entityManager.find(Cliente.class, id));
 	}
-	
+	@Override
 	public Cliente actualizarCliente(Cliente cliente) {
 		return entityManager.merge(cliente);
 	}
-	
+	@Override
 	public void eliminarClientePorId(Long id) {
 		Cliente cliente = entityManager.find(Cliente.class, id);
 		if(cliente != null) {
 			entityManager.remove(cliente);
 		}
 	}
-	
+	@Override
 	public Cliente modificarDireccion(Long clienteId, Direccion nuevaDireccion) {
 		Cliente cliente = entityManager.find(Cliente.class, clienteId);
 		if(cliente != null) {
@@ -50,14 +61,14 @@ public class ClienteRepositorio implements InterfazRepositorio {
 		}
 		return cliente;
 	}
-	
+	@Override
 	public List<Cliente> buscarClientesPorCiudad(String ciudad) {
         return entityManager.createQuery(
                 "SELECT c FROM Cliente c WHERE c.direccion.ciudad = :ciudad", Cliente.class)
                 .setParameter("ciudad", ciudad)
                 .getResultList();
     }
-	
+	@Override
 	public int actualizarCiudadPorNombre(String ciudad, String nombre) {
         return entityManager.createQuery(
                 "UPDATE Cliente c SET c.direccion.ciudad = :ciudad WHERE LOWER(c.nombre) LIKE LOWER(:nombre)")
