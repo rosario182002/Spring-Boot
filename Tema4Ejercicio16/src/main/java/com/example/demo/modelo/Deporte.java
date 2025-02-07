@@ -19,7 +19,7 @@ public class Deporte {
 	@Column
 	private String nombre;
 	
-	@ManyToMany(mappedBy = "deporte")
+	@ManyToMany(mappedBy = "deportes")
 	private Set<Deportista> deportistas;
 	
 	public Deporte() {

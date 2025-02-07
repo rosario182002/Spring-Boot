@@ -11,25 +11,25 @@ import com.example.demo.modelo.Deporte;
 import com.example.demo.modelo.Deportista;
 import com.example.demo.servicio.InterServiDeporte;
 import com.example.demo.servicio.InterServiDeportista;
-import com.example.demo.servicio.ServiDeportista;
 
 @SpringBootApplication
-public class Tema4Ejercicio16Application  implements CommandLineRunner{
+public class Tema4Ejercicio17Application implements CommandLineRunner{
+	
+	  @Autowired
+	  
+	    private InterServiDeportista deportistaService;
 
-	@Autowired
-    private InterServiDeportista deportistaService;
-
-    @Autowired
-    private InterServiDeporte deporteService;
+	    @Autowired
+	    private InterServiDeporte deporteService;
 
 	public static void main(String[] args) {
-		SpringApplication.run(Tema4Ejercicio16Application.class, args);
+		SpringApplication.run(Tema4Ejercicio17Application.class, args);
 	}
 
 	@Override
 	public void run(String... args) throws Exception {
 		// TODO Auto-generated method stub
-		  // 1. Crear dos deportistas: deportista1 y deportista2.
+		 // 1. Crear dos deportistas: deportista1 y deportista2.
         Deportista deportista1 = new Deportista();
         deportista1.setNombre("Deportista 1");
         deportistaService.crearDeportista(deportista1);
@@ -88,7 +88,13 @@ public class Tema4Ejercicio16Application  implements CommandLineRunner{
         System.out.println("\nDatos del deportista1 después de eliminar futbol:");
         Deportista deportista1Datos = deportistaService.obtenerDeportistaPorId(deportista1.getId());
         System.out.println(deportista1Datos);
+
+        //Ejemplo de uso de la bidireccionalidad:
+        Deporte deporteFutbol = deporteService.obtenerDeportePorId(futbol.getId());
+        System.out.println("\nDeportistas que juegan al futbol: " + deporteFutbol.getDeportistas());
+
     }
+	
+	
 
 }
-
