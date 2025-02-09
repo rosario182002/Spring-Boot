@@ -1,0 +1,22 @@
+<!DOCTYPE html>
+<html>
+<head>
+<meta charset="UTF-8">
+<title>Insert title here</title>
+</head>
+<title>Primer Usuario Disponible</title>
+</head>
+<body>
+    <h1 th:text="${usuario != null ? 'Primer Usuario Disponible' : 'No hay usuarios disponibles'}"></h1>
+
+    <div th:if="${usuario != null}">
+        <p>Nombre: <span th:text="${usuario.nombre}"></span></p>
+        <p>Email: <span th:text="${usuario.email}"></span></p>
+        <p>Biografía: <span th:text="${usuario.perfil.bio}"></span></p>
+    </div>
+    <div th:unless="${usuario != null}">
+        <p>No hay ningún usuario con estado disponible.</p>
+    </div>
+    <a href="/">Volver al inicio</a>
+</body>
+</html>
