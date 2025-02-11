@@ -46,10 +46,8 @@ public class Controlador {
 	    }
 	    
 	    @PostMapping("/guardar-usuario")
-	    public String guardarUsuario(@ModelAttribute Usuario usuario,
-	                                @RequestParam String bio, //para coger los datos que pasamos en url usamos el requestParam
-	                                @RequestParam String estado) {
-
+	    public String guardarUsuario(@ModelAttribute Usuario usuario, String bio, String estado) {
+	    
 	        Perfil perfil = new Perfil();
 	        perfil.setBio(bio);
 	        perfil.setEstado(estado);
