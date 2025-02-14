@@ -1,0 +1,23 @@
+<!DOCTYPE html>
+<html xmlns:th="http://www.thymeleaf.org">
+<head>
+    <title>Añadir Empleado</title>
+</head>
+<body>
+    <h1>Añadir Empleado</h1>
+    <form action="/empleados/guardar-empleado" method="post">
+        <label>Nombre:</label>
+        <input type="text" name="nombre" required>
+        <br>
+        <label>Puesto:</label>
+        <input type="text" name="puesto" required>
+        <br>
+        <label>Email:</label>
+        <input type="email" name="email" required>
+        <br>
+        <button type="submit">Guardar</button>
+    </form>
+    <br>
+    <a href="/empleados/lista-empleado">Volver a la lista</a>
+</body>
+</html>

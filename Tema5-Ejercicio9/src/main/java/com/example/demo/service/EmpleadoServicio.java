@@ -27,10 +27,14 @@ public class EmpleadoServicio implements EmpleadoServicioInterfaz{
 	public void obtenerEmpleado(Empleado empleado) {
 		empleadoRepositorio.obtenerEmpleados(empleado);
 	}
-	
+	@Override
+	public Empleado obtenerEmpleadoPorId(Integer id) {
+	    return empleadoRepositorio.obtenerEmpleadoPorId(id);
+	}
 
-	public Empleado insertarEmpleado(Integer id) {
-		return empleadoRepositorio.insertarEmpleado(id);
+
+	public Empleado insertarEmpleado(Empleado empleado) {
+		return empleadoRepositorio.insertarEmpleado(empleado);
 	}
 	
 	@Transactional

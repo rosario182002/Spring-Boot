@@ -17,8 +17,9 @@ public class OficinaRepositorio implements OficinaRepositorioInterfaz{
 	private EntityManager entityManager;
 	
 	@Override
-	public void obtenerOficina(Oficina oficina) {
+	public Oficina obtenerOficina(Oficina oficina) {
 		entityManager.persist(oficina);
+		return oficina;
 	}
 	
 	@Override

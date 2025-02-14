@@ -1,6 +1,7 @@
 package com.example.demo.service;
 
 import java.util.HashMap;
+import java.util.List;
 import java.util.Map;
 
 import org.springframework.beans.factory.annotation.Autowired;
@@ -20,9 +21,14 @@ public class OficinaServicio implements OficinaServicioInterfaz{
 	
 	@Transactional
 	@Override
-	public void obtenerOficina (Oficina oficina) {
-		oficinaRepositorio.obtenerOficina(oficina);
+	public Oficina obtenerOficina (Oficina oficina) {
+		return oficinaRepositorio.obtenerOficina(oficina);
 	}
+	@Override 
+	public List<Oficina> listaOficinas() {
+		return oficinaRepositorio.listaOficinas();
+	}
+	
 	
 	@Override
 	public Oficina obtenerOficinaPorId(Integer id) {

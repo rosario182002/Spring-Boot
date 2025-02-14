@@ -1,0 +1,28 @@
+<!DOCTYPE html>
+<html xmlns:th="http://www.thymeleaf.org">
+<head>
+    <title>Añadir Oficina</title>
+</head>
+<body>
+    <h1>Añadir Oficina</h1>
+    <form action="/oficinas/guardar-oficina" method="post">
+        <label>Ubicación:</label>
+        <input type="text" name="ubicacion" required>
+        <br>
+        <label>Teléfono:</label>
+        <input type="text" name="telefono" required>
+        <br>
+        <h3>Seleccionar empleados:</h3>
+        <div th:each="empleado : ${empleados}">
+            <input type="checkbox" name="empleadosIds" th:value="${empleado.id}">
+            <label th:text="${empleado.nombre}"></label>
+        </div>
+        <br>
+        <button type="submit">Guardar</button>
+    </form>
+    <br>
+    <a href="/empleados/form-empleado">Añadir nuevo empleado</a>
+    <br>
+    <a href="/oficinas/lista-oficina">Volver a la lista</a>
+</body>
+</html>

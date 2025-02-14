@@ -71,13 +71,13 @@ public class Tema5Ejercicio9Application implements CommandLineRunner {
 		        System.out.println("Empleados con puesto 'Desarrollador': " + desarrolladores);
 
 		        // Consultar empleado por ID
-		        Empleado empleadoConsultado = empleadoServicio.insertarEmpleado(empleado1.getId());
-		        System.out.println("Empleado consultado por ID: " + empleadoConsultado);
+		        Empleado empleadoConsultado = empleadoServicio.insertarEmpleado(empleado1);
+		        System.out.println("Empleado consultado por Empleado: " + empleadoConsultado);
 
 		        // Actualizar empleado
 		        empleadoConsultado.setNombre("Juan Actualizado");
 		        empleadoServicio.actualizarEmpleado(empleadoConsultado.getId(), empleadoConsultado);
-		        System.out.println("Empleado actualizado: " + empleadoServicio.insertarEmpleado(empleadoConsultado.getId()));
+		        System.out.println("Empleado actualizado: " + empleadoServicio.insertarEmpleado(empleadoConsultado));
 
 		        // Actualizar solo el teléfono de la oficina de un empleado
 		        oficina1.setTelefono("111222333");

@@ -30,8 +30,8 @@ public class EmpleadoRepositorio implements EmpleadoRepositorioInterfaz{
 		return entityManager.find(Empleado.class, id);
 	}
 	@Override
-	public Empleado insertarEmpleado(Integer id) {
-		return entityManager.find(Empleado.class, id);
+	public Empleado insertarEmpleado(Empleado empleado) {
+		return entityManager.find(Empleado.class, empleado);
 	}
 	@Override
 	public Empleado actualizarEmpleado(Empleado empleado) {

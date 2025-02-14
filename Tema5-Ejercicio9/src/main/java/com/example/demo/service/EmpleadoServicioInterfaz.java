@@ -9,9 +9,10 @@ public interface EmpleadoServicioInterfaz {
 
 	public List<Empleado> listaEmpleados();
 	public void obtenerEmpleado(Empleado empleado);
-	public Empleado insertarEmpleado(Integer id);
+	public Empleado insertarEmpleado(Empleado empleado);
 	public void actualizarEmpleado(Integer id, Empleado emp);
 	public Boolean borrarEmpleado(Integer id);
 	public List<Empleado> EmpleadosPuesto(String puesto);
 	public List<Empleado> EmpleadosNoOficina();
+	Empleado obtenerEmpleadoPorId(Integer id);
 }

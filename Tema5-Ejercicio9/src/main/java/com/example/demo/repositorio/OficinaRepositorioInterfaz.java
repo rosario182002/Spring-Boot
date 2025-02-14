@@ -6,7 +6,7 @@ import com.example.demo.modelo.Oficina;
 
 public interface OficinaRepositorioInterfaz {
 
-	public void obtenerOficina(Oficina oficina);
+	public Oficina obtenerOficina(Oficina oficina);
 
 	public List<Oficina> listaOficinas();
 
