@@ -7,12 +7,17 @@ import com.example.demo.modelo.Empleado;
 
 public interface EmpleadoServicioInterfaz {
 
-	public List<Empleado> listaEmpleados();
-	public void obtenerEmpleado(Empleado empleado);
-	public Empleado insertarEmpleado(Empleado empleado);
-	public void actualizarEmpleado(Integer id, Empleado emp);
-	public Boolean borrarEmpleado(Integer id);
-	public List<Empleado> EmpleadosPuesto(String puesto);
-	public List<Empleado> EmpleadosNoOficina();
+	void crearEmpleado(Empleado empleado);
+
+	List<Empleado> obtenerEmpleados();
+
 	Empleado obtenerEmpleadoPorId(Integer id);
+
+	void actualizarEmpleado(Integer idEmpleado, Empleado empleado);
+
+	void eliminarEmpleado(Integer idEmpleado);
+
+	List<Empleado> obtenerEmpleadosPorPuesto(String puesto);
+
+	
 }

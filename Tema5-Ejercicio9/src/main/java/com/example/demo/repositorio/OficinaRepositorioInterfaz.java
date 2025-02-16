@@ -6,14 +6,16 @@ import com.example.demo.modelo.Oficina;
 
 public interface OficinaRepositorioInterfaz {
 
-	public Oficina obtenerOficina(Oficina oficina);
+	Oficina guardar(Oficina oficina);
 
-	public List<Oficina> listaOficinas();
+	List<Oficina> obtenerOficinas();
 
-	public Oficina obtenerOficinaPorId(Integer id);
+	Oficina obtenerOficinaPorId(Integer id);
 
-	public void borrarOficina(Oficina oficina);
+	void eliminarOficina(Oficina oficina);
 
-	public long contarEmpleados(Integer id);
+	void actualizarTelefono(Integer idEmpleado, Integer telefono);
+
+
 
 }

@@ -24,7 +24,7 @@ public class Controlador {
 	
 	 @GetMapping("/empleados")
 	    public String verTodosEmpleados(Model model) {
-	        model.addAttribute("empleados", empleadoServicio.listaEmpleados());
+	        model.addAttribute("empleados", empleadoServicio.obtenerEmpleados());
 	        return "index";
 	    }
 	 @GetMapping("/form-empleado")
@@ -35,12 +35,12 @@ public class Controlador {
 
 	 @PostMapping("/guardar-empleado")
 	 public String guardarEmpleado(@ModelAttribute Empleado empleado) {
-	     empleadoServicio.insertarEmpleado(empleado);
+	     empleadoServicio.crearEmpleado(empleado);
 	     return "redirect:/empleados/lista";
 	 }
 	 @GetMapping("/lista-oficina")
 	 public String mostrarListaOficinas(Model model) {
-	     List<Oficina> oficinas = oficinaServicio.listaOficinas();
+	     List<Oficina> oficinas = oficinaServicio.obtenerOficinas();
 	     model.addAttribute("oficinas", oficinas);
 	     return "oficinas-lista";
 	 }
@@ -48,25 +48,24 @@ public class Controlador {
 	 @GetMapping("/form-oficina")
 	 public String mostrarFormularioOficina(Model model) {
 	     model.addAttribute("oficina", new Oficina());
-	     model.addAttribute("empleados", empleadoServicio.listaEmpleados());
+	     model.addAttribute("empleados", empleadoServicio.obtenerEmpleados());
 	     return "oficina-form";
 	 }
 
 	 @PostMapping("/guardar-oficina")
 	 public String guardarOficina(@ModelAttribute Oficina oficina, List<Integer> empleadosIds) {
-	     // Guardar la nueva oficina en la base de datos
-	     Oficina nuevaOficina = oficinaServicio.obtenerOficina(oficina);
+		 Oficina nuevaOficina = oficinaServicio.crearOficina(oficina);
 
-	     // Asignar empleados a la oficina si hay IDs seleccionados
-	     if (empleadosIds != null) {
-	         for (Integer id : empleadosIds) {
-	             Empleado empleado = empleadoServicio.obtenerEmpleadoPorId(id);
-	             if (empleado != null) {
-	                 empleado.setOficina(nuevaOficina);
-	                 empleadoServicio.actualizarEmpleado(empleado.getId(), empleado);
-	             }
-	         }
-	     }
+		    // Asignar empleados a la oficina si hay IDs seleccionados
+		    if (empleadosIds != null && !empleadosIds.isEmpty()) {
+		        for (Integer id : empleadosIds) {
+		            Empleado empleado = empleadoServicio.obtenerEmpleadoPorId(id);
+		            if (empleado != null) {
+		                empleado.setOficina(nuevaOficina); // Asignamos la oficina
+		                empleadoServicio.actualizarEmpleado(empleado.getId(), empleado);
+		            }
+		        }
+		    }
 	     // Redirigir a la lista de oficinas
 	     return "redirect:/oficinas/lista";
 	 }
@@ -74,7 +73,7 @@ public class Controlador {
 	 public String verEmpleadosDeOficina(@PathVariable Integer id, Model model) {
 	     Oficina oficina = oficinaServicio.obtenerOficinaPorId(id);
 	     if (oficina != null) {
-	         model.addAttribute("empleados", oficina.getListaEmpleados());
+	         model.addAttribute("empleados", oficina.getEmpleados());
 	     }
 	     return "empleados-oficina";
 	 }

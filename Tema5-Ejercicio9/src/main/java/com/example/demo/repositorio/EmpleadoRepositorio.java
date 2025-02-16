@@ -16,37 +16,29 @@ public class EmpleadoRepositorio implements EmpleadoRepositorioInterfaz{
 	@PersistenceContext
 	private EntityManager entityManager;
 	
-	public List<Empleado>listaTodosEmpleados(){
-		return entityManager.createQuery("SELECT e FROM Empleado e", Empleado.class).getResultList();
-	}
-	
-	@Override
-	public void obtenerEmpleados(Empleado empleado) {
-		entityManager.persist(empleado);
-	}
-	
-	@Override
-	public Empleado obtenerEmpleadoPorId (Integer id) {
-		return entityManager.find(Empleado.class, id);
-	}
-	@Override
-	public Empleado insertarEmpleado(Empleado empleado) {
-		return entityManager.find(Empleado.class, empleado);
-	}
-	@Override
-	public Empleado actualizarEmpleado(Empleado empleado) {
-		return entityManager.merge(empleado);
-	}
-	@Override
-	public void eliminarEmpleado(Empleado empleado) {
-		entityManager.remove(empleado);
-	}
-	@Override
-	public List<Empleado> EmpleadoPuesto(String puesto){
-		String jpql = "SELECT e FROM Empleado e WHERE e.puesto LIKE :puesto";
-		Query<Empleado> query = (Query<Empleado>) entityManager.createQuery(jpql, Empleado.class).setParameter("puesto",
-				"%" + puesto + "%");
-		return query.getResultList();
-	}
+	  @Override
+	    public void guardar(Empleado empleado) {
+	        if (empleado.getId() == null) {
+	        	entityManager.persist(empleado);
+	        } else {
+	        	entityManager.merge(empleado);
+	        }
+	    }
+
+	    @Override
+	    public List<Empleado> obtenerEmpleados() {
+	        Query<Empleado> consulta = (Query<Empleado>) entityManager.createQuery("SELECT e FROM Empleado e", Empleado.class);
+	        return consulta.getResultList();
+	    }
+
+	    @Override
+	    public Empleado obtenerEmpleadoPorId(Integer id) {
+	        return entityManager.find(Empleado.class, id);
+	    }
+
+	    @Override
+	    public void eliminarEmpleado(Empleado empleado) {
+	    	entityManager.remove(empleado);
+	    }
 
 }

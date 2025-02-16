@@ -1,0 +1,48 @@
+<!DOCTYPE html>
+<html>
+<head>
+<meta charset="UTF-8">
+<title>Buscar Estudiante</title>
+</head>
+<body>
+
+	<h1>Buscar Estudiantes</h1>
+
+	<form th:action="@{/buscador}" method="get">
+		<label for="nombre">Nombre: </label> <input type="text" id="nombre"
+			name="nombre" th:value="${nombreBuscado}">
+
+		<button type="submit">Buscar</button>
+	</form>
+	
+	
+    <div th:if="${estudiantes != null}">
+        <h2 th:if="${!estudiantes.isEmpty()}">Resultados para: <span th:text="${nombreBuscado}"></span></h2>
+        <h2 th:if="${estudiantes.isEmpty()}">No se encontraron estudiantes con el nombre: <span th:text="${nombreBuscado}"></span></h2>
+
+        <table th:if="${!estudiantes.isEmpty()}">
+            <thead>
+                <tr>
+                    <th>Nombre</th>
+                    <th>Email</th>
+                    <th>Cursos</th>
+                </tr>
+            </thead>
+            <tbody>
+                <tr th:each="estudiante : ${estudiantes}">
+                    <td th:text="${estudiante.nombre}"></td>
+                    <td th:text="${estudiante.email}"></td>
+                    <td>
+                        <ul>
+                            <li th:each="curso : ${estudiante.cursos}" th:text="${curso.nombre}"></li>
+                        </ul>
+                    </td>
+                </tr>
+            </tbody>
+        </table>
+    </div>
+
+    <a th:href="@{/cursos/listado}">Ver Listado de Cursos</a>
+
+</body>
+</html>

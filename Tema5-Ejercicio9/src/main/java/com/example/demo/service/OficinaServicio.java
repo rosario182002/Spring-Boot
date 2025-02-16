@@ -1,65 +1,83 @@
 package com.example.demo.service;
 
+import java.util.ArrayList;
 import java.util.HashMap;
 import java.util.List;
 import java.util.Map;
+import java.util.stream.Collectors;
 
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Service;
 
+import com.example.demo.modelo.Empleado;
 import com.example.demo.modelo.Oficina;
 import com.example.demo.repositorio.OficinaRepositorio;
 
 import jakarta.transaction.Transactional;
 
-@Service
 
-public class OficinaServicio implements OficinaServicioInterfaz{
+@Service
+@Transactional
+public class OficinaServicio implements OficinaServicioInterfaz {
 
 	@Autowired
-	private OficinaRepositorio oficinaRepositorio;
-	
-	@Transactional
+	private OficinaRepositorio repositorio;
+
+
 	@Override
-	public Oficina obtenerOficina (Oficina oficina) {
-		return oficinaRepositorio.obtenerOficina(oficina);
+	public Oficina crearOficina(Oficina oficina) {
+		return repositorio.guardar(oficina);
 	}
-	@Override 
-	public List<Oficina> listaOficinas() {
-		return oficinaRepositorio.listaOficinas();
+
+	@Override
+	public List<Oficina> obtenerOficinas() {
+		return repositorio.obtenerOficinas();
 	}
-	
-	
+
 	@Override
 	public Oficina obtenerOficinaPorId(Integer id) {
-		return oficinaRepositorio.obtenerOficinaPorId(id);
+		return repositorio.obtenerOficinaPorId(id);
 	}
-	
+
 	@Transactional
 	@Override
-	public Boolean eliminarOficina(Integer id) {
-		Oficina oficina = oficinaRepositorio.obtenerOficinaPorId(id);
+	public void eliminarOficina(Integer id) {
+		Oficina oficina = repositorio.obtenerOficinaPorId(id);
 		if (oficina != null) {
-			oficinaRepositorio.borrarOficina(oficina);
-			return true;
-		} else {
-			return false;
+			repositorio.eliminarOficina(oficina);
 		}
 	}
-	
-	@Override
-	public long contarEmpleados(Integer id) {
-		return oficinaRepositorio.contarEmpleados(id);
-	}
-	
-	@Override
-	public Map<Integer, Long> MapNumeroEmpleados(Integer id) {
-		long conteo = contarEmpleados(id);
 
-		Map<Integer, Long> mapaEmpleados = new HashMap<>();
-		mapaEmpleados.put(id, conteo);
-
-		return mapaEmpleados;
+	@Override
+	public Integer obtenerNumeroEmpleadosOficina(Integer idOficina) {
+		Oficina oficina = repositorio.obtenerOficinaPorId(idOficina);
+		return oficina.getEmpleados().size();
 	}
+
+	@Override
+	public Map<Integer, Long> obtenerMapaOficinasConEmpleados() {
+		return repositorio.obtenerOficinas().stream()
+				.collect(Collectors.toMap(Oficina::getId, oficina -> (long) oficina.getEmpleados().size()));
+	}
+
+	@Override
+	public List<Oficina> obtenerOficinasConMasDeNEmpleados(Integer cantidad) {
+		List<Oficina> oficinas = repositorio.obtenerOficinas();
+		List<Oficina> ofi = new ArrayList<>();
+		for (Oficina oficina : oficinas) {
+			if (oficina.getEmpleados().size() > cantidad) {
+				ofi.add(oficina);
+			}
+		}
+		return ofi;
+	}
+
+	@Transactional
+	@Override
+	public void actualizarTelefono(Integer idEmpleado, Integer telefono) {
+		repositorio.actualizarTelefono(idEmpleado, telefono);
+	}
+
+
 
 }

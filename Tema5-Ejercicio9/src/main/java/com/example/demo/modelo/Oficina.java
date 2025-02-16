@@ -9,37 +9,40 @@ import jakarta.persistence.Entity;
 import jakarta.persistence.GeneratedValue;
 import jakarta.persistence.GenerationType;
 import jakarta.persistence.Id;
-import jakarta.persistence.ManyToOne;
+import jakarta.persistence.JoinColumn;
 import jakarta.persistence.OneToMany;
 import jakarta.persistence.Table;
 
+
 @Entity
-@Table(name ="oficina")
+@Table(name = "oficina")
 public class Oficina {
+
 	@Id
 	@GeneratedValue(strategy = GenerationType.IDENTITY)
-	@Column
 	private Integer id;
-	
+
 	@Column
 	private String ubicacion;
+
 	@Column
-	private String telefono;
-	
-	@OneToMany(mappedBy = "oficina")
-	@Column
-	private List<Empleado> listaEmpleados;
-	
+	private Integer telefono;
+
+	// El eager se utiliza para traer todos los datos de una lista, sino quiero traer todos los datos uso el lazy
+	@OneToMany(cascade = CascadeType.ALL)
+	@JoinColumn(name = "oficina_id")
+	private List<Empleado> empleados;
+
 	public Oficina() {
-		
+
 	}
 
-	public Oficina(Integer id, String ubicacion, String telefono, List<Empleado> listaEmpleados) {
+	public Oficina(String ubicacion, Integer telefono, List<Empleado> empleados) {
 		super();
-		this.id = id;
+		this.empleados = new ArrayList<>();
 		this.ubicacion = ubicacion;
 		this.telefono = telefono;
-		this.listaEmpleados = new ArrayList<>();
+		this.empleados = empleados;
 	}
 
 	public Integer getId() {
@@ -58,21 +61,27 @@ public class Oficina {
 		this.ubicacion = ubicacion;
 	}
 
-	public String getTelefono() {
+	public Integer getTelefono() {
 		return telefono;
 	}
 
-	public void setTelefono(String telefono) {
+	public void setTelefono(Integer telefono) {
 		this.telefono = telefono;
 	}
 
-	public List<Empleado> getListaEmpleados() {
-		return listaEmpleados;
+	public List<Empleado> getEmpleados() {
+		return empleados;
 	}
 
-	public void setListaEmpleados(List<Empleado> listaEmpleados) {
-		this.listaEmpleados = listaEmpleados;
+	public void setEmpleados(List<Empleado> empleados) {
+		this.empleados = empleados;
 	}
-	
+
+	@Override
+	public String toString() {
+		return "Oficina [id=" + id + ", ubicacion=" + ubicacion + ", telefono=" + telefono + ", empleados=" + empleados
+				+ "]";
+	}
+
 	
 }

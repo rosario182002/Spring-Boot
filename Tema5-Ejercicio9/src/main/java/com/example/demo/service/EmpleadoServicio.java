@@ -15,64 +15,46 @@ import jakarta.transaction.Transactional;
 public class EmpleadoServicio implements EmpleadoServicioInterfaz{
 
 	@Autowired
-	private EmpleadoRepositorio empleadoRepositorio;
-	
+	private EmpleadoRepositorio repositorio;
+
 	@Override
-	public List<Empleado> listaEmpleados()  {
-		return empleadoRepositorio.listaTodosEmpleados();
+	public void crearEmpleado(Empleado empleado) {
+		repositorio.guardar(empleado);
 	}
-	
-	@Transactional
+
 	@Override
-	public void obtenerEmpleado(Empleado empleado) {
-		empleadoRepositorio.obtenerEmpleados(empleado);
+	public List<Empleado> obtenerEmpleados() {
+		return repositorio.obtenerEmpleados(); // Cambiado a obtenerTodos
 	}
+
 	@Override
 	public Empleado obtenerEmpleadoPorId(Integer id) {
-	    return empleadoRepositorio.obtenerEmpleadoPorId(id);
-	}
-
-
-	public Empleado insertarEmpleado(Empleado empleado) {
-		return empleadoRepositorio.insertarEmpleado(empleado);
-	}
-	
-	@Transactional
-	@Override
-	public void actualizarEmpleado(Integer id, Empleado emp) {
-		Empleado empleado = empleadoRepositorio.obtenerEmpleadoPorId(id);
-		if (empleado != null) {
-			empleado.setNombre(emp.getNombre());
-			empleado.setEmail(emp.getEmail());
-			empleado.setPuesto(emp.getPuesto());
-			empleado.getOficina().setTelefono(emp.getOficina().getTelefono());
-			empleado.getOficina().setUbicacion(emp.getOficina().getUbicacion());
-		}
-		 empleadoRepositorio.actualizarEmpleado(empleado);
+		return repositorio.obtenerEmpleadoPorId(id); // Cambiado a obtenerPorId
 	}
 
 	@Transactional
 	@Override
-	public Boolean borrarEmpleado(Integer id) {
-		Empleado empleado = empleadoRepositorio.obtenerEmpleadoPorId(id);
+	public void actualizarEmpleado(Integer idEmpleado, Empleado empleado) {
+		Empleado emp = repositorio.obtenerEmpleadoPorId(idEmpleado); // Cambiado a obtenerPorId
+		if (emp != null) {
+			empleado.setId(idEmpleado);
+			repositorio.guardar(empleado); // Cambiado a guardar
+		}
+	}
+
+	@Transactional
+	@Override
+	public void eliminarEmpleado(Integer idEmpleado) {
+		Empleado empleado = repositorio.obtenerEmpleadoPorId(idEmpleado); // Cambiado a obtenerPorId
 		if (empleado != null) {
-			empleadoRepositorio.eliminarEmpleado(empleado);
-			return true;
-		} else {
-			return false;
+			repositorio.eliminarEmpleado(empleado); // Cambiado a eliminar
 		}
 	}
 
 	@Override
-	public List<Empleado> EmpleadosPuesto(String puesto) {
-		return empleadoRepositorio.EmpleadoPuesto(puesto);
-	}
-
-	@Override
-	public List<Empleado> EmpleadosNoOficina() {
-		List<Empleado> empleados = empleadoRepositorio.listaTodosEmpleados().stream().filter(x -> x.getOficina() == null).toList();
+	public List<Empleado> obtenerEmpleadosPorPuesto(String puesto) {
+		List<Empleado> empleados = repositorio.obtenerEmpleados().stream() // Cambiado a obtenerTodos
+				.filter(usuario -> usuario.getPuesto().equalsIgnoreCase(puesto)).toList();
 		return empleados;
 	}
-
-	
 }

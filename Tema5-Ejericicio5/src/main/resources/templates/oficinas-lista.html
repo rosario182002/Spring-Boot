@@ -1,0 +1,41 @@
+<!DOCTYPE html>
+<html xmlns:th="http://www.thymeleaf.org">
+<head>
+<meta charset="UTF-8">
+<meta http-equiv="X-UA-Compatible" content="IE=edge">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<title>Oficinas</title>
+</head>
+<body>
+
+    <h1>Lista de Oficinas</h1>
+
+    <table border="1">
+        <thead>
+            <tr>
+                <th>Ubicación</th>
+                <th>Teléfono</th>
+                <th>Acciones</th>
+            </tr>
+        </thead>
+        <tbody>
+            <tr th:each="oficina : ${oficinas}">
+                <td th:text="${oficina.ubicacion}"></td>
+                <td th:text="${oficina.telefono}"></td>
+                <td>
+                    <a th:href="@{/empleados/oficinas/{id}(id=${oficina.id})}" th:data-id="${oficina.id}" class="ver-empleados-link">Ver empleados</a>
+                </td>
+            </tr>
+        </tbody>
+    </table>
+	<a th:href="@{/empleados/oficinas/formularioOficina}">Añadir oficina</a>
+
+    <div th:if="${empleados != null}">
+        <h3>Empleados de la Oficina</h3>
+        <ul>
+            <li th:each="empleado : ${empleados}" th:text="${empleado.nombre} + ' (' + ${empleado.puesto} + ')'"></li>
+        </ul>
+    </div>
+
+</body>
+</html>

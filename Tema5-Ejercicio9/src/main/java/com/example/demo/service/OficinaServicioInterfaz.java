@@ -7,17 +7,23 @@ import com.example.demo.modelo.Oficina;
 
 public interface OficinaServicioInterfaz {
 
-	Oficina obtenerOficina(Oficina oficina);
+
+	Oficina crearOficina(Oficina oficina);
+
+	List<Oficina> obtenerOficinas();
 
 	Oficina obtenerOficinaPorId(Integer id);
 
-	Boolean eliminarOficina(Integer id);
+	void eliminarOficina(Integer id);
 
-	long contarEmpleados(Integer id);
+	Integer obtenerNumeroEmpleadosOficina(Integer idOficina);
 
-	Map<Integer, Long> MapNumeroEmpleados(Integer id);
+	Map<Integer, Long> obtenerMapaOficinasConEmpleados();
 
-	List<Oficina> listaOficinas();
+	List<Oficina> obtenerOficinasConMasDeNEmpleados(Integer cantidad);
 
+	void actualizarTelefono(Integer idEmpleado, Integer telefono);
+
+	
 
 }

@@ -6,13 +6,14 @@ import com.example.demo.modelo.Empleado;
 
 public interface EmpleadoRepositorioInterfaz {
 
-	public List<Empleado>listaTodosEmpleados();
-	public void obtenerEmpleados(Empleado empleado);
-	public Empleado insertarEmpleado(Empleado empleado);
-	public Empleado actualizarEmpleado(Empleado empleado);
-	public void eliminarEmpleado(Empleado empleado);
-	public List<Empleado> EmpleadoPuesto(String puesto);
-	public Empleado obtenerEmpleadoPorId(Integer id);
-	
+	void guardar(Empleado empleado);
+
+	List<Empleado> obtenerEmpleados();
+
+	Empleado obtenerEmpleadoPorId(Integer id);
+
+	void eliminarEmpleado(Empleado empleado);
+
+
 
 }
